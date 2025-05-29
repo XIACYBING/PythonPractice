@@ -39,6 +39,8 @@ def list_new():
     new_list = deepcopy(list_sample)
     print(f"deepcopy新建：{new_list}")
 
+    print(f"列表推导式新建指定长度的空列表{[None for _ in range(3)]}")
+
     print("列表新建方法展示结束\n")
 
 
