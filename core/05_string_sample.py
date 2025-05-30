@@ -45,6 +45,10 @@ def char_def():
     num_list = '|'.join([str(x) for x in range(0, 10)])
     print(f"对可迭代对象的连接：{num_list}")
     print(f"字符串的分割：{num_list.split('|')}")
+    print(f"字符串的in包含：{'a' in s}")
+    print(f"字符串的find包含：{s.find('a')}")
+    print(f"字符串的count包含：{s.count('a')}")
+    print(f"字符串的index包含：{s.index('a')}")
 
     s1 = 'abababa'
     print(f"去掉字符串首尾的指定字符串：{s1.strip('a')}")
@@ -77,11 +81,11 @@ for n in range(0, 100000):
     loop_time_list = timeit.repeat(stmt=loop_concat_code, number=10, repeat=5)
     list_time_list = timeit.repeat(stmt=list_concat_code, number=10, repeat=5)
 
-    # 据说python 2.5之后，循环拼接字符串已经有了一些优化，但是看起来和直接用list拼接，效率还是差了二十多倍
-    # 平均：8042.573119990994 ms
+    # 据说python 2.5之后，循环拼接字符串已经有了一些优化，但是看起来和直接用list拼接，效率还是有点差距
+    # 平均：173.85389998089522 ms
     print(f"循环拼接字符串消耗时间：{statistics.mean(loop_time_list) * 1000} ms")
 
-    # 平均：347.3604999948293 ms
+    # 平均：115.36132000619546 ms
     print(f"列表拼接字符串消耗时间：{statistics.mean(list_time_list) * 1000} ms")
 
 

@@ -37,6 +37,8 @@ def dict_example():
     print(f"key不存在时可用get方法：{dict_sample.get('non', 1)}")
 
     print(f"判断key是否包含：{'name' in dict_sample}")
+    print(f"判断value是否包含：{'jason' in dict_sample.values()}")
+    print(f"判断key和value是否包含：{[k + ':' + v for k, v in dict_sample.items() if k == 'name' and v == 'jason' ]}")
 
     # 增加key-value
     dict_sample['gender'] = 'male'
