@@ -1,0 +1,514 @@
+<!-- https://claude.ai/share/ab7485f5-7f99-4f48-a958-26f2e02946d3 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>协议签署</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #06a8fe 0%, #fdfdfe 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 32px;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .protocol-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 32px;
+            text-align: center;
+            line-height: 1.4;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 20px;
+        }
+
+        .protocol-content {
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 32px;
+            background: #fdfdfd;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #2c3e50;
+            flex-grow: 1;
+            overflow-y: auto;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            min-height: 0;
+        }
+
+        .protocol-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .protocol-content::-webkit-scrollbar-track {
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .protocol-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .protocol-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        .protocol-content h1, .protocol-content h2, .protocol-content h3 {
+            margin: 24px 0 16px 0;
+            color: #1a1a1a;
+        }
+
+        .protocol-content h1 {
+            font-size: 22px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+
+        .protocol-content h2 {
+            font-size: 20px;
+        }
+
+        .protocol-content h3 {
+            font-size: 18px;
+        }
+
+        .protocol-content p {
+            margin: 12px 0;
+            /*text-align: justify;*/
+        }
+
+        .protocol-content ul, .protocol-content ol {
+            margin: 12px 0;
+            padding-left: 24px;
+        }
+
+        .protocol-content li {
+            margin: 8px 0;
+        }
+
+        .protocol-content * {
+            max-width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .protocol-content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .protocol-content pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .sign-button {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+            margin-top: auto;
+            flex-shrink: 0;
+        }
+
+        .sign-button:disabled {
+            background: #bdc3c7;
+            color: #7f8c8d;
+            cursor: not-allowed;
+        }
+
+        .sign-button:enabled {
+            background: #3498db;
+            color: white;
+        }
+
+        .sign-button:enabled:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(52, 152, 219, 0.3);
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #27ae60;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: white;
+            font-size: 36px;
+        }
+
+        .success-text {
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>正在加载，请稍候...</p>
+        </div>
+    </div>
+
+    <script>
+        // 全局配置
+        const CONFIG = {
+            // 测试环境域名为hkdev.cn，生产环境域名为homeking365.com
+            isDev: window.location.hostname.includes('hkdev.cn') || window.location.hostname === 'localhost',
+            get domain() {
+                return this.isDev ? 'hkdev.cn' : 'homeking365.com';
+            },
+            get customerApiUrl() {
+                return `https://customer-api.${this.domain}`;
+            },
+            get apiUrl() {
+                return `https://api.${this.domain}`;
+            },
+            get loginUrl() {
+                return `https://login.${this.domain}`;
+            }
+        };
+
+        // 工具函数
+        function getUrlParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function encodeUrl(url) {
+            return encodeURIComponent(url);
+        }
+
+        function showError(message, traceId) {
+            const container = document.getElementById('container');
+            const errorHtml = `
+                <div class="error fade-in">
+                    <strong>错误：</strong>${JSON.stringify(message)}
+                    ${traceId ? `<br><small>链路ID: ${traceId}</small>` : ''}
+                </div>
+            `;
+            container.innerHTML = errorHtml + container.innerHTML;
+        }
+
+        function showSuccess(message) {
+            const container = document.getElementById('container');
+            container.innerHTML = `
+                <div class="success-message fade-in">
+                    <div class="success-icon">✓</div>
+                    <div class="success-text">${message}</div>
+                </div>
+            `;
+        }
+
+        function showLoading(message = '正在加载，请稍候...') {
+            const container = document.getElementById('container');
+            container.className = 'container loading-container';
+            container.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        // API调用封装
+        async function apiCall(url, options = {}) {
+            try {
+                const response = await fetch(url, {
+                    credentials: 'include', // 自动携带当前域名的cookie
+                    mode: 'cors', // 支持跨域请求
+                    ...options,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    }
+                });
+
+                const data = await response.json();
+                const traceId = response.headers.get('Hk-Trace-Id');
+
+                if (data.success === false) {
+                    showError(data.errorCode || '请求失败', traceId);
+                    throw new Error(`API Error: ${data.errorCode}`);
+                }
+
+                return data;
+            } catch (error) {
+                if (!error.message.includes('API Error:')) {
+                    showError('网络请求失败，请检查网络连接');
+                }
+                throw error;
+            }
+        }
+
+        // 检查登录状态
+        async function checkLoginStatus() {
+            const data = await apiCall(`${CONFIG.customerApiUrl}/login/status`);
+            return data.data.code !== 1001;
+        }
+
+        // 重定向到登录页
+        function redirectToLogin() {
+            const currentUrl = window.location.href;
+            const redirectUrl = encodeUrl(currentUrl);
+            window.location.href = `${CONFIG.loginUrl}/login/sms?appPage=login&redirectUrl=${redirectUrl}`;
+        }
+
+        // 检查协议签署状态
+        async function checkProtocolSignStatus() {
+            const targetUserType = getUrlParam('targetUserType');
+            const targetUserId = getUrlParam('targetUserId');
+
+            if (!targetUserType || !targetUserId) {
+                showError('缺少必要参数 targetUserType 或 targetUserId');
+                return null;
+            }
+
+            const data = await apiCall(`${CONFIG.apiUrl}/api/x-customer/home-connect-protocol/check-protocol-sign-status`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    targetUserType: targetUserType,
+                    targetUserId: targetUserId
+                })
+            });
+
+            return data.data;
+        }
+
+        // 获取协议模板信息
+        async function getProtocolTemplate(templateNo, version) {
+            const data = await apiCall(`${CONFIG.customerApiUrl}/sign/getTemplateBaseInfo`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    templateNo: templateNo,
+                    version: version
+                })
+            });
+
+            return data.data;
+        }
+
+        // 保存签署记录
+        async function saveSignRecord(templateNo, templateVersion) {
+            const targetUserType = getUrlParam('targetUserType');
+            const targetUserId = getUrlParam('targetUserId');
+
+            if (!targetUserType || !targetUserId) {
+                showError('缺少必要参数 targetUserType 或 targetUserId');
+                return null;
+            }
+
+            return await apiCall(`${CONFIG.apiUrl}/api/x-customer/home-connect-protocol/sign-protocol`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    targetUserType: targetUserType,
+                    targetUserId: targetUserId,
+                    expectTemplateNo: templateNo,
+                    expectTemplateVersion: templateVersion
+                })
+            });
+        }
+
+        // 渲染协议页面
+        function renderProtocol(protocolData) {
+            const container = document.getElementById('container');
+            container.className = 'container';
+            container.innerHTML = `
+                <div class="fade-in" style="display: flex; flex-direction: column; height: 100%;">
+                    <div class="protocol-title">
+                        ${protocolData.name} ${protocolData.version}
+                    </div>
+                    <div class="protocol-content" id="protocolContent">
+                        ${protocolData.content}
+                    </div>
+                    <button class="sign-button" id="signButton" disabled>
+                        请阅读协议5秒
+                    </button>
+                </div>
+            `;
+
+            initSignButton(protocolData.templateNo, protocolData.version);
+        }
+
+        // 初始化签署按钮逻辑
+        function initSignButton(templateNo, templateVersion) {
+            const button = document.getElementById('signButton');
+            const content = document.getElementById('protocolContent');
+            let countdown = 5;
+            let hasScrolledToBottom = false;
+
+            // 倒计时逻辑
+            const timer = setInterval(() => {
+                countdown--;
+                if (countdown > 0) {
+                    button.textContent = `请阅读协议${countdown}秒`;
+                } else {
+                    clearInterval(timer);
+                    checkReadStatusAndUpdateButton();
+                }
+            }, 1000);
+
+            // 检查阅读状态并更新按钮
+            function checkReadStatusAndUpdateButton() {
+                // 检查是否已经滚动到底部
+                const isAtBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 10;
+                
+                if (isAtBottom) {
+                    hasScrolledToBottom = true;
+                    button.textContent = '确认签署';
+                    button.disabled = false;
+                } else {
+                    button.textContent = '请完整阅读协议，并将协议滚动到末尾';
+                    button.disabled = true;
+                }
+            }
+
+            // 监听滚动事件（虽然主要是自动换行，但保留滚动检测以防内容过长）
+            content.addEventListener('scroll', () => {
+                if (countdown <= 0) {
+                    checkReadStatusAndUpdateButton();
+                }
+            });
+
+            // 点击签署按钮
+            button.addEventListener('click', async () => {
+                if (button.disabled) return;
+
+                button.disabled = true;
+                button.textContent = '正在签署...';
+
+                try {
+                    await saveSignRecord(templateNo, templateVersion);
+                    showSuccess('您已经签署协议，感谢您的签署！');
+                } catch (error) {
+                    console.error('签署异常:', error);
+                    button.disabled = false;
+                    button.textContent = '确认签署';
+                }
+            });
+        }
+
+        // 主流程
+        async function main() {
+            try {
+                showLoading('正在检查登录状态...');
+
+                // 1. 检查登录状态
+                const isLoggedIn = await checkLoginStatus();
+                if (!isLoggedIn) {
+                    redirectToLogin();
+                    return;
+                }
+
+                showLoading('正在检查协议签署状态...');
+
+                // 2. 检查协议签署状态
+                const protocolStatus = await checkProtocolSignStatus();
+                if (!protocolStatus) return;
+
+                if (protocolStatus.signed) {
+                    showSuccess('您当前已经签署过协议，感谢您的签署！');
+                    return;
+                }
+
+                showLoading('正在获取协议内容...');
+
+                // 3. 获取协议模板信息
+                const protocolTemplate = await getProtocolTemplate(
+                    protocolStatus.protocolTemplateNo,
+                    protocolStatus.protocolTemplateVersion
+                );
+
+                // 4. 渲染协议页面
+                renderProtocol(protocolTemplate);
+
+            } catch (error) {
+                console.error('Main process error:', error);
+            }
+        }
+
+        // 页面加载完成后启动主流程
+        document.addEventListener('DOMContentLoaded', main);
+    </script>
+</body>
+</html>
